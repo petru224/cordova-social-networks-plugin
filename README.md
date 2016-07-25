@@ -1,1 +1,2 @@
-# cordova-social-networks-plugin
+# social-networks
+Hello
