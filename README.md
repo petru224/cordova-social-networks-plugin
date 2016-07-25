@@ -1,0 +1,1 @@
+# cordova-social-networks-plugin
