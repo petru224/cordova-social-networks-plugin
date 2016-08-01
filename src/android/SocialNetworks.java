@@ -31,12 +31,6 @@ public class SocialNetworks extends CordovaPlugin {
             return true;
         }
 
-        if ("isAvailable".equals(action)) {
-            //isAvailable();
-
-            return true;
-        }
-
         return false;
     }
 
@@ -50,7 +44,7 @@ public class SocialNetworks extends CordovaPlugin {
                     Uri.parse(uri));
         } catch (Exception e) {
             return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.facebook.com/petru.zgurean"));
+                    Uri.parse(url));
         }
     }
 
@@ -59,7 +53,7 @@ public class SocialNetworks extends CordovaPlugin {
             context.getPackageManager().getPackageInfo("com.twitter.android", 0);
             return  new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         } catch (Exception e) {
-            return  new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/pipsypie"));
+            return  new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         }
     }
 
@@ -68,10 +62,10 @@ public class SocialNetworks extends CordovaPlugin {
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         try {
             if (pm.getPackageInfo("com.instagram.android", 0) != null) {
-                if (url.endsWith("/")) {
-                    url = url.substring(0, url.length() - 1);
+                if (uri.endsWith("/")) {
+                    uri = uri.substring(0, uri.length() - 1);
                 }
-                final String username = url.substring(url.lastIndexOf("/") + 1);
+                final String username = uri.substring(uri.lastIndexOf("/") + 1);
                 intent.setData(Uri.parse("http://instagram.com/_u/" + username));
                 intent.setPackage("com.instagram.android");
                 return intent;
@@ -84,8 +78,13 @@ public class SocialNetworks extends CordovaPlugin {
 
     public static Intent getOpenSnapchatIntent(Context context,String uri,String url) {
         try {
+            if (uri.endsWith("/")) {
+                uri = uri.substring(0, uri.length() - 1);
+            }
+            final String username = uri.substring(uri.lastIndexOf("/") + 1);
+
             context.getPackageManager().getPackageInfo("com.snapchat.android", 0);
-            return  new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/"+uri)).setPackage("com.snapchat.android");
+            return  new Intent(Intent.ACTION_VIEW, Uri.parse("https://snapchat.com/add/"+username)).setPackage("com.snapchat.android");
         } catch (Exception e) {
             return  new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         }
@@ -114,6 +113,7 @@ public class SocialNetworks extends CordovaPlugin {
 
   
 }
+
 
 
 
