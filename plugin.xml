@@ -29,6 +29,19 @@
         <clobbers target="socialNetworks" />
     </js-module>
 
+ 	<!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="SocialNetworks">
+                <param name="ios-package" value="SocialNetworks"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/SocialNetworks.h" />
+        <source-file src="src/ios/SocialNetworks.m" />
+
+    </platform>
+
 
     <!-- android -->
     <platform name="android">
