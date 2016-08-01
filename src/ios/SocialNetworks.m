@@ -1,21 +1,21 @@
 
 #import "SocialNetworks.h"
-#import "Cordova/NSData+Base64.h"
-#import "Cordova/CDVAvailability.h"
-#import <MobileCoreServices/MobileCoreServices.h>
-
-#include "TargetConditionals.h"
 
 
 @implementation SocialNetworks
 
 - (void) open:(CDVInvokedUrlCommand*)command
 {
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ROFL" 
-                                                    message:@"Dee dee doo doo." 
-                                                    delegate:self 
-                                                    cancelButtonTitle:@"OK" 
-                                                    otherButtonTitles:nil];
-    [alert show];  
+    NSDictionary* args = [command.arguments objectAtIndex:0];
+    NSString* app = [args valueForKey:@"app"];
+    NSString* uri = [args valueForKey:@"uri"];
+    NSString* url = [args valueForKey:@"url"];
+    NSLog(@"%@",args);
+     NSURL *facebookURL = [NSURL URLWithString:uri];
+        if (![[UIApplication sharedApplication] openURL:facebookURL])
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
+   
 }
 @end
