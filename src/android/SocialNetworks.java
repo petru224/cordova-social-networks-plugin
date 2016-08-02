@@ -65,7 +65,7 @@ public class SocialNetworks extends CordovaPlugin {
                 if (uri.endsWith("/")) {
                     uri = uri.substring(0, uri.length() - 1);
                 }
-                final String username = uri.substring(uri.lastIndexOf("/") + 1);
+                final String username = uri.substring(uri.lastIndexOf("=") + 1);
                 intent.setData(Uri.parse("http://instagram.com/_u/" + username));
                 intent.setPackage("com.instagram.android");
                 return intent;
