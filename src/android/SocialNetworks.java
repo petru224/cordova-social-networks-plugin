@@ -34,7 +34,6 @@ public class SocialNetworks extends CordovaPlugin {
         return false;
     }
 
-
     public static Intent getOpenFacebookIntent(Context context,String uri,String url) {
 
         try {
